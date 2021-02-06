@@ -3,7 +3,8 @@ Leaflet.FreieTonne
 
 A Leaflet layer that adds the nautical features overlay from [FreieTonne](https://www.freietonne.de/).
 
-[Demo](https://facilmap.org/#10/53.7259/9.5072/MSfR-FrTo)
+[Demo](https://unpkg.com/leaflet-freie-tonne/example.html) (you might need to enable temporary access to cors-anywhere [here](https://cors-anywhere.herokuapp.com/corsdemo))
+[Demo on FacilMap](https://facilmap.org/#10/53.7259/9.5072/MSfR-FrTo)
 
 
 Usage
