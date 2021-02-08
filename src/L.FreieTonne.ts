@@ -3,7 +3,6 @@ import { fetchFreieTonneFeatures } from "./utils";
 import "./L.FreieTonne.css";
 
 export interface FreieTonneOptions extends LayerOptions {
-    fetchWrapper?: (url: string) => Promise<string>;
 }
 
 export default class FreieTonne extends FeatureGroup {
@@ -35,7 +34,7 @@ export default class FreieTonne extends FeatureGroup {
             return;
         }
         
-        const features = await fetchFreieTonneFeatures(this._map.getBounds(), zoom, this.options.fetchWrapper);
+        const features = await fetchFreieTonneFeatures(this._map.getBounds(), zoom);
 
         this.clearLayers();
 

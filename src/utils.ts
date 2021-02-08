@@ -38,13 +38,8 @@ export function decodeFreieTonneFeatures(content: string): Array<FreieTonneFeatu
     });
 }
 
-export function defaultFetchWrapper(url: string): Promise<string> {
-    const resolvedUrl = url.replace(/^https:/, "http:"); // cors-anywhere doesn't seem to work with HTTPS
-    return fetch(`https://cors-anywhere.herokuapp.com/${resolvedUrl}`).then((res) => res.text());
-}
-
-export async function fetchFreieTonneFeatures(bounds: LatLngBounds, zoom: number, fetchWrapper = defaultFetchWrapper): Promise<Array<FreieTonneFeature>> {
-    const content = await fetchWrapper(getFreieTonneUrl(bounds, zoom));
+export async function fetchFreieTonneFeatures(bounds: LatLngBounds, zoom: number): Promise<Array<FreieTonneFeature>> {
+    const content = await fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
     return decodeFreieTonneFeatures(content);
 }
 
