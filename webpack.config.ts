@@ -9,7 +9,8 @@ module.exports = (env: any, argv: any): Configuration => {
 		output: {
 			filename: "L.FreieTonne.js",
 			path: __dirname + "/dist/",
-			library: "L.FreieTonne",
+			library: ["L", "FreieTonne"],
+			libraryExport: "default",
 			libraryTarget: "umd"
 		},
 		resolve: {
@@ -44,7 +45,8 @@ module.exports = (env: any, argv: any): Configuration => {
 		],
 		devServer: {
 			publicPath: "/dist",
-			disableHostCheck: true
+			disableHostCheck: true,
+			injectClient: false // https://github.com/webpack/webpack-dev-server/issues/2484
 		}
 	};
 };

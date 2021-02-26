@@ -55,17 +55,3 @@ export default class FreieTonne extends FeatureGroup {
         }
     }
 }
-
-declare module 'leaflet' {
-    function freieTonne(options?: FreieTonneOptions): FreieTonne;
-
-    class FreieTonne extends L.LayerGroup {
-        constructor(options?: FreieTonneOptions);
-    }
-}
-
-L.FreieTonne = FreieTonne;
-
-L.freieTonne = function freieTonne(options?: FreieTonneOptions) {
-    return new L.FreieTonne(options);
-};
