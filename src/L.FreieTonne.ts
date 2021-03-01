@@ -7,12 +7,13 @@ export interface FreieTonneOptions extends LayerOptions {
 
 export default class FreieTonne extends FeatureGroup {
 
-    options: FreieTonneOptions = {
-        attribution: '© <a href="https://www.freietonne.de/" target="_blank">FreieTonne</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank">OSM Contributors</a>'
-    };
+    options!: FreieTonneOptions;
 
     constructor(options: FreieTonneOptions = {}) {
-        super([], options);
+        super([], {
+            attribution: '© <a href="https://www.freietonne.de/" target="_blank">FreieTonne</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank">OSM Contributors</a>',
+            ...options
+        });
     }
 
     getEvents() {
