@@ -1,11 +1,11 @@
-import L, { FeatureGroup, LayerOptions, Map } from "leaflet";
+import * as L from "leaflet";
 import { fetchFreieTonneFeatures } from "./utils";
 import "./L.FreieTonne.css";
 
-export interface FreieTonneOptions extends LayerOptions {
+export interface FreieTonneOptions extends L.LayerOptions {
 }
 
-export default class FreieTonne extends FeatureGroup {
+export default class FreieTonne extends L.FeatureGroup {
 
     options!: FreieTonneOptions;
 
@@ -34,7 +34,7 @@ export default class FreieTonne extends FeatureGroup {
             this.clearLayers();
             return;
         }
-        
+
         const features = await fetchFreieTonneFeatures(this._map.getBounds(), zoom);
 
         this.clearLayers();

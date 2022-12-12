@@ -27,5 +27,10 @@ export default defineConfig({
 			},
 			external: ['leaflet']
 		}
+	},
+	resolve: {
+		alias: {
+			'leaflet-freie-tonne': './src/L.FreieTonne.ts'
+		}
 	}
 });
