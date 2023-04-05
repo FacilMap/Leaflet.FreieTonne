@@ -7,7 +7,7 @@ export interface FreieTonneOptions extends L.LayerOptions {
 
 export default class FreieTonne extends L.FeatureGroup {
 
-    options!: FreieTonneOptions;
+    declare options: FreieTonneOptions;
 
     constructor(options: FreieTonneOptions = {}) {
         super([], {
