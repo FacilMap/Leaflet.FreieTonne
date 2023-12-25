@@ -3,13 +3,8 @@
   "version": "2.0.0",
   "description": "Leaflet layer for FreieTonne natical features overlay.",
   "type": "module",
-  "exports": {
-    ".": {
-      "default": "./dist/L.FreieTonne.js",
-      "types": "./dist/L.FreieTonne.d.ts"
-    },
-    "./*": "./*"
-  },
+  "main": "./dist/L.FreieTonne.js",
+  "types": "./dist/L.FreieTonne.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/FacilMap/Leaflet.FreieTonne.git"
