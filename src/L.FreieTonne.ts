@@ -1,5 +1,5 @@
 import * as L from "leaflet";
-import { fetchFreieTonneFeatures } from "./utils";
+import { fetchFreieTonneFeatures } from "./utils.js";
 import "./L.FreieTonne.css";
 
 export interface FreieTonneOptions extends L.LayerOptions {

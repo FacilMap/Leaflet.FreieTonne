@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>L.FreieTonne Example</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-		<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+		<link rel="stylesheet" href="https://esm.sh/leaflet/dist/leaflet.css" />
 		<style type="text/css">
 			html, body { width: 100%; height: 100%; margin: 0; }
 			#map { width: 100%; height: 100%; }
@@ -17,8 +17,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"leaflet": "https://unpkg.com/leaflet/dist/leaflet-src.esm.js",
-					"leaflet-freie-tonne": "./dist/L.FreieTonne.mjs"
+					"leaflet": "https://esm.sh/leaflet",
+					"leaflet-freie-tonne": "./dist/L.FreieTonne.js"
 				}
 			}
 		</script>
@@ -27,7 +27,7 @@
 			import * as L from 'leaflet';
 			import FreieTonne from 'leaflet-freie-tonne';
 
-		    var map = L.map('map',{
+		    var map = L.map('map', {
 				center: [53.7259, 9.5072],
 				zoom: 10
 			});

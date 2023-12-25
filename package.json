@@ -2,13 +2,11 @@
   "name": "leaflet-freie-tonne",
   "version": "1.1.2",
   "description": "Leaflet layer for FreieTonne natical features overlay.",
-  "main": "./dist/L.FreieTonne.js",
-  "module": "./dist/L.FreieTonne.mjs",
-  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/L.FreieTonne.mjs",
-      "require": "./dist/L.FreieTonne.js"
+      "default": "./dist/L.FreieTonne.js",
+      "types": "./dist/L.FreieTonne.d.ts"
     },
     "./*": "./*"
   },
@@ -25,7 +23,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "FORMAT=es vite build && FORMAT=umd vite build",
+    "build": "vite build",
     "clean": "rimraf dist",
     "dev-server": "vite",
     "check-types": "tsc --noEmit"

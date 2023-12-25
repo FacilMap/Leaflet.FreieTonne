@@ -2,35 +2,27 @@ import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dtsPlugin from 'vite-plugin-dts';
 
-const format = process.env.FORMAT === 'umd' ? 'umd' : 'es';
-
 export default defineConfig({
 	plugins: [
 		cssInjectedByJsPlugin(),
-		...(format === 'es' ? [dtsPlugin()] : [])
+		dtsPlugin({ rollupTypes: true })
 	],
 	build: {
 		sourcemap: true,
 		minify: false,
-		emptyOutDir: false,
 		lib: {
-			entry: `./src/index${format === 'umd' ? '-umd' : ''}.ts`,
-			name: 'L.FreieTonne',
-			fileName: (format) => `L.FreieTonne.${format === 'umd' ? 'js' : 'mjs'}`,
-			formats: [format]
+			entry: `./src/index.ts`,
+			name: "L.FreieTonne",
+			fileName: () => "L.FreieTonne.js",
+			formats: ["es"]
 		},
 		rollupOptions: {
-			output: {
-				globals: {
-					'leaflet': 'L'
-				}
-			},
-			external: ['leaflet']
+			external: (id) => !id.startsWith("./") && !id.startsWith("../") && /* resolved internal modules */ !id.startsWith("/")
 		}
 	},
 	resolve: {
 		alias: {
-			'leaflet-freie-tonne': './src/L.FreieTonne.ts'
+			'leaflet-freie-tonne': './src/index.ts'
 		}
 	}
 });

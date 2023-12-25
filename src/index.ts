@@ -1,5 +1,5 @@
-import FreieTonne from './L.FreieTonne';
-export * from './utils';
-export * from './L.FreieTonne';
+import FreieTonne from './L.FreieTonne.js';
+export * from './utils.js';
+export * from './L.FreieTonne.js';
 
 export default FreieTonne;
