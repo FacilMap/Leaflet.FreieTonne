@@ -1,10 +1,15 @@
 {
 	"compilerOptions": {
+		"outDir": "./out",
+		"composite": true,
 		"target": "esnext",
 		"esModuleInterop": true,
 		"strict": true,
 		"moduleResolution": "bundler",
 		"module": "esnext"
 	},
+	"references": [
+		{ "path": "./tsconfig.node.json" }
+	],
 	"include": ["src/**/*"]
 }

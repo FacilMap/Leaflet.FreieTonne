@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"outDir": "./out.node",
+		"composite": true,
+		"target": "esnext",
+		"esModuleInterop": true,
+		"strict": true,
+		"moduleResolution": "nodenext",
+		"module": "nodenext"
+	},
+	"include": [
+		"vite.config.ts"
+	]
+}

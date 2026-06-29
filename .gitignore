@@ -1,6 +1,8 @@
 *.iml
 dist
 node_modules
+out
+out.*
 .pnp.*
 .yarn/*
 !.yarn/patches
