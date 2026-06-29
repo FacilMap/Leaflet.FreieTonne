@@ -42,3 +42,15 @@ If you want to use Leaflet.FreieTonne directly inside a website without using a 
 	new FreieTonne().addTo(map);
 </script>
 ```
+
+### Custom fetch adapter
+
+You can set a custom function to call the FreieTonne API:
+
+```typescript
+import { setFreieTonneFetchAdapter, getFreieTonneUrl } from "leaflet-freie-tonne";
+
+setFreieTonneFetchAdapter((bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text()));
+```
+
+`bounds` is a Leaflet `Bounds` object and `zoom` is a number, both representing the current map view. `getFreieTonneUrl()` returns the default FreieTonne API URL to fetch the sea marks for this map view. You can modify the above code to use a different API URL or to use a replacement for the `fetch` function. The adapter should return a promise that is resolved with a string.

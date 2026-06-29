@@ -14,6 +14,13 @@ export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number): string {
     })}`;
 }
 
+export type FreieTonneFetchAdapter = (bounds: L.LatLngBounds, zoom: number) => Promise<string>;
+let fetchAdapter: FreieTonneFetchAdapter = (bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
+
+export function setFreieTonneFetchAdapter(adapter: FreieTonneFetchAdapter): void {
+    fetchAdapter = adapter;
+}
+
 export interface FreieTonneFeature {
     latLng: L.LatLngTuple;
     iconUrl: string;
