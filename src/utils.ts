@@ -4,8 +4,8 @@ function encodeQueryString(obj: Record<string, string | number>) {
     return Object.keys(obj).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`).join('&');
 }
 
-export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number) {
-    return `https://www.freietonne.de/seekarte/getOpenLayerPois.php?${encodeQueryString({
+export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number): string {
+    return `https://www.freietonne.de/seekarte-2.0/getOpenLayerPois.php?${encodeQueryString({
         ldez1: bounds.getWest(),
         ldez2: bounds.getEast(),
         bdez1: bounds.getNorth(),
