@@ -47,7 +47,7 @@ export function decodeFreieTonneFeatures(content: string): Array<FreieTonneFeatu
         const feature = line.split(/\t/);
 
         const latLng: L.LatLngTuple = [ Number(feature[0]), Number(feature[1]) ];
-        const iconUrl = `https://www.freietonne.de/seekarte/${feature[6]}`;
+        const iconUrl = `https://www.freietonne.de/seekarte-2.0/${feature[6]}`;
         const iconSize = feature[4].split(",").map((n) => Number(n)) as L.PointTuple;
         const iconAnchor = feature[5].split(",").map((n, i) => iconSize[i] + Number(n)) as L.PointTuple;
         const popupAnchor: L.PointTuple = [ -iconAnchor[0] + Math.round(iconSize[0]/2), -iconAnchor[1] ];
