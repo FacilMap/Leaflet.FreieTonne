@@ -46,7 +46,7 @@ export function decodeFreieTonneFeatures(content: string): Array<FreieTonneFeatu
 }
 
 export async function fetchFreieTonneFeatures(bounds: L.LatLngBounds, zoom: number): Promise<Array<FreieTonneFeature>> {
-    const content = await fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
+    const content = await fetchAdapter(bounds, zoom);
     return decodeFreieTonneFeatures(content);
 }
 
