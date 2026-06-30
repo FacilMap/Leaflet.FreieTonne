@@ -18,14 +18,16 @@ export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number): string {
 }
 
 export type FreieTonneFetchAdapter = (bounds: L.LatLngBounds, zoom: number) => Promise<string>;
-let fetchAdapter: FreieTonneFetchAdapter = (bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
+const defaultFetchAdapter: FreieTonneFetchAdapter = (bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
+let fetchAdapter = defaultFetchAdapter;
 
 /**
  * Overrides the function to fetch the Freie Tonne features for the given map view. The default implementation is
  * `(bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text())`.
+ * Setting `undefined` resets the adapter to the default implementation.
  */
-export function setFreieTonneFetchAdapter(adapter: FreieTonneFetchAdapter): void {
-    fetchAdapter = adapter;
+export function setFreieTonneFetchAdapter(adapter: FreieTonneFetchAdapter | undefined): void {
+    fetchAdapter = adapter ?? defaultFetchAdapter;
 }
 
 export interface FreieTonneFeature {
