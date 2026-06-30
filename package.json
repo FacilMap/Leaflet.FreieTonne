@@ -1,6 +1,6 @@
 {
   "name": "leaflet-freie-tonne",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Leaflet layer for FreieTonne natical features overlay.",
   "type": "module",
   "main": "./dist/L.FreieTonne.js",
