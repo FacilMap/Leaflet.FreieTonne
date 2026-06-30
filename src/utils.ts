@@ -4,6 +4,9 @@ function encodeQueryString(obj: Record<string, string | number>) {
     return Object.keys(obj).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`).join('&');
 }
 
+/**
+ * Returns the API URL to fetch the Freie Tonne features for the given map view.
+ */
 export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number): string {
     return `https://www.freietonne.de/seekarte-2.0/getOpenLayerPois.php?${encodeQueryString({
         ldez1: bounds.getWest(),
@@ -17,6 +20,10 @@ export function getFreieTonneUrl(bounds: L.LatLngBounds, zoom: number): string {
 export type FreieTonneFetchAdapter = (bounds: L.LatLngBounds, zoom: number) => Promise<string>;
 let fetchAdapter: FreieTonneFetchAdapter = (bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text());
 
+/**
+ * Overrides the function to fetch the Freie Tonne features for the given map view. The default implementation is
+ * `(bounds, zoom) => fetch(getFreieTonneUrl(bounds, zoom)).then((res) => res.text())`.
+ */
 export function setFreieTonneFetchAdapter(adapter: FreieTonneFetchAdapter): void {
     fetchAdapter = adapter;
 }
@@ -30,6 +37,9 @@ export interface FreieTonneFeature {
     content: string;
 }
 
+/**
+ * Takes the text file with features returned by the Freie Tonne API and parses it into an array of feature objects.
+ */
 export function decodeFreieTonneFeatures(content: string): Array<FreieTonneFeature> {
     return content.trim().split(/\r\n|\r|\n/).slice(1).map((line) => {
         const feature = line.split(/\t/);
@@ -45,11 +55,20 @@ export function decodeFreieTonneFeatures(content: string): Array<FreieTonneFeatu
     });
 }
 
+/**
+ * Fetches the Freie Tonne features (using the fetch adapter configured through `freieTonneFetchAdapter()` if set) using the API.
+ */
 export async function fetchFreieTonneFeatures(bounds: L.LatLngBounds, zoom: number): Promise<Array<FreieTonneFeature>> {
     const content = await fetchAdapter(bounds, zoom);
     return decodeFreieTonneFeatures(content);
 }
 
+/**
+ * Sanitizes the popover content HTML returned by the Freie Tonne API. Each feature contains a header in column 3 and content in
+ * column 4 that are meant to be shown in the popover when clicking on the feature. Both of these contain HTML tags for formatting,
+ * but they contain some attributes that are specific to the Freie Tonne website and need to be removed for general use. This
+ * function returns the final HTML code that should be used for the popover, including the header and the content.
+ */
 export function cleanUpContent(header: string, content: string): string {
     if (content === '')
         return '';
